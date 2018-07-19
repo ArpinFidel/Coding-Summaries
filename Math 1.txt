@@ -1,0 +1,127 @@
+Math : 
+CF		197A		Game Theory				Plate Game
+UVA		10338		Combinatorics			Mischievous Children
+UVA		10235		Prime (simple sieve)	Simply Emirp
+CF		267A		Factors					Subsractions
+UVA		10699		Factors					Count the Factors
+CF		9A			Factors (gcd)			Die Roll
+UVA		11466		Factors					Largest Prime Divisor
+UVA		294			Factors					Divisors
+SPOJ	TDKPRIME	Prime (simple sieve)	Finding the Kth Prime
+CF		312B		Combinatorics			Archer
+SPOJ	PRINT		Prime (segmented sieve)	Prime Intervals
+UVA		10140		Prime (segmented sieve)	Prime Distance
+CF		92B			Binary					Binary Number
+UVA		530			Combinatorics			Binomial Showdown
+UVA		884			Factorial / Factors		Factorial Factors
+UVA		10407		Divisors				Simple Division
+UVA		10139		Factorial / Factors		Factovisors
+
+The only two things you need for this topic are a prime sieve and a GCD ( Greatest Common Divisor (FPB) ) function
+
+GCD :
+
+for b >= a,
+
+	int gcd (int a, int b) {
+		if (a == 0) return b;
+		return gcd (b % a, a);
+	}
+
+also, 
+LCM (a, b) = a * b / GCD (a, b)
+
+
+Prime Sieve :
+
+a. Simple Sieve
+
+The sieve of Eratosthenes is one of the oldest ways to find prime numbers, and is still one of the fastest. It does so by marking the multiples of each prime, starting from 2. When all the multiples of that number (up to a given limit) has been marked, the first unmarked numbers has to be a prime. This prime is then used to find more primes.
+
+a.1. First Optimisation (square root)
+A number cannot have more than one factor larger than its root. This means that to mark all numbers up to N, we only have to look for primes up to sqrt(N) (this concept will be important later on). We can also start marking numbers from the square of the prime instead of its first multiple (2 * P).
+
+a.2 Second Optimisation (multiples of 2)
+Since we know that the first prime is 2, we can cut the time required to compute the sieve by half by simply ignoring all the multiples of two.
+
+Examples :
+	// true is false
+
+
+	// basic sieve
+	void esieve (int n) {
+	
+		memset (isprime, 0, n);
+		
+		isprime[0] = isprime[1] = true;
+
+		for (int i = 4; i <= n; i += 2) isprime[i] = true;
+
+		for (int i = 3; i * i < n; i += 2)
+			if (isprime[i] == false)
+				for (int j = i * i; j <= n; j += i)
+					isprime[j] = true;
+	}
+
+
+	// slower but simpler variation
+	// not optimised. optimisation left as exercise for the reader
+	void sieve (int n) {
+	
+		memset (isprime, 0, n);
+		
+		for (int i = 2; i < N; i++) {
+		
+			if (!isprime[i]) primelist.push_back (i);
+			
+			for (int j = 0; j < p.size() && i * primelist[j] <= n; j++) {
+			
+				isprime[i * primelist[j]] = true;
+				if (i % primelist[j] == 0) break;
+			}
+		}
+	}
+	
+	
+	// overly optimised variation
+	void esieve (int n) {
+		
+		memset (isprime, 0, n / 2);
+	
+		for (int i = 3; i * i < n; i += 2)
+			if (sieve[(i - 3) / 2] == false)
+				for (int j = i * i; j <= n; j += i * 2)
+					sieve[(j - 3) / 2] = true;
+	}
+	
+
+b. Segmented Sieve
+The segmented sieve is used for cases where only some of the primes are needed. It works the same way as the simple sieve, utilising the square root concept.
+
+1. We start with two numbers L and U. To mark all the numbers up to U, we need to have all the primes below sqrt(U). Simply use the simple sieve for this.
+2. For each prime P from 2 to sqrt(U) :
+		2.1 find the first multiple of P after L
+		2.2 mark all multiples of P between L and U as not prime
+		
+Example :
+
+	void ssieve (unsigned long long L, unsigned long long U) {
+	
+		memset (isprime, 0, U - L + 1);
+		
+		int l;
+
+		for (int i = 0 ; i < primectr ; i++) {
+			if (primelist[i] == 0) continue;
+
+			l = L / primelist[i] * primelist[i];
+
+			if (L % primelist[i] != 0) l += primelist[i];
+
+			if (l <= primelist[i]) l += primelist[i];
+
+			for (unsigned long j = l ; j <= U ; j += primelist[i]) {
+				isprime[j - L] = true;
+			}
+		}
+	}

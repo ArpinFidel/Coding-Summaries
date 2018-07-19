@@ -1,0 +1,31 @@
+every topic in 15 words or less
+
+INCLUDE :
+Komputer itu goblok, ga bisa ngapa2in. Mesti diajarin. Ini library. Buat ngajarin komputer.
+
+DATA TYPES :
+Ada angka, huruf, boolean. Angka ada koma, ada bulet. Angka ada kapasitas gede, kecil, sedeng.
+
+SELECTION :
+Jika kondisi A terpenuhi, do this. Kalo ga, do that (possibly ga ngapa2in).
+
+LOOPING :
+Gamau tulis satu proses seribu kali kan? Pake loop.
+
+ARRAY :
+Kumpulan data dikasi nomor biar bisa suruh komputer lakukan X buat data nomor A - B.
+
+LOOPING ON ARRAY :
+Lakukan X terhadap data nomor A sampe B.
+
+STRUCT :
+Macem2 data dimasukin ke satu container. Kyk paket makanan.
+
+FUNCTION :
+Ada proses yg lu copas? Jadiin function. Tinggal panggil functionnya. Same thing.
+
+RETURN :
+Ketika function dipanggil, dia berubah jadi hasil return.
+
+VOID RETURN TYPE :
+Functionnya ga berubah jadi apa2.
