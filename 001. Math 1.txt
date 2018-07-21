@@ -1,21 +1,21 @@
 MATH 1 PROBLEMS : 
-CF		197A		Game Theory				Plate Game
-UVA		10338		Combinatorics			Mischievous Children
-UVA		10235		Prime (simple sieve)	Simply Emirp
-CF		267A		Factors					Subsractions
-UVA		10699		Factors					Count the Factors
-CF		9A			Factors (gcd)			Die Roll
-UVA		11466		Factors					Largest Prime Divisor
-UVA		294			Factors					Divisors
-SPOJ	TDKPRIME	Prime (simple sieve)	Finding the Kth Prime
-CF		312B		Combinatorics			Archer
-SPOJ	PRINT		Prime (segmented sieve)	Prime Intervals
-UVA		10140		Prime (segmented sieve)	Prime Distance
-CF		92B			Binary					Binary Number
-UVA		530			Combinatorics			Binomial Showdown
-UVA		884			Factorial / Factors		Factorial Factors
-UVA		10407		Divisors				Simple Division
-UVA		10139		Factorial / Factors		Factovisors
+CF  	197A    	Game Theory            	Plate Game
+UVA 	10338   	Combinatorics          	Mischievous Children
+UVA 	10235   	Prime (simple sieve)   	Simply Emirp
+CF  	267A    	Factors                	Subsractions
+UVA 	10699   	Factors                	Count the Factors
+CF  	9A      	Factors (gcd)          	Die Roll
+UVA 	11466   	Factors                	Largest Prime Divisor
+UVA 	294     	Factors                	Divisors
+SPOJ	TDKPRIME	Prime (simple sieve)   	Finding the Kth Prime
+CF  	312B    	Combinatorics          	Archer
+SPOJ	PRINT   	Prime (segmented sieve)	Prime Intervals
+UVA 	10140   	Prime (segmented sieve)	Prime Distance
+CF  	92B     	Binary                 	Binary Number
+UVA 	530     	Combinatorics          	Binomial Showdown
+UVA 	884     	Factorial / Factors    	Factorial Factors
+UVA 	10407   	Divisors               	Simple Division
+UVA 	10139   	Factorial / Factors    	Factovisors
 
 
 
