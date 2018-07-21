@@ -1,0 +1,91 @@
+1. BINARY SEARCH ON SORTED ARRAY
+
+
+
+1.A INTRODUCTION
+
+Binary search is an efficient algorithm commonly used to find an element inside a sorted array. Binary search compares the middle element of the array with the searched element. If they are not equal, then due to the nature of a sorted array, it is possible to determine which half of the array the element is in. The search is then repeated on that half. The search ends when the element is found, or the remaining half is empty.
+
+
+1.B COMMON TYPES OF BINARY SEARCH
+
+In general, there are three common variations for the binary search: upper bound search, lower bound search, and exact match.
+
+Exact Match : 
+if the element is not found, return false (usually implemented by returning -1).
+
+Upper Bound and Lower Bound : 
+If the element is not found, return the index of the closest element. Upper bound returns the index of the element bigger than the target value, while lower bound does the opposite.
+
+If there are multiple occurences of the target, upper bound returns the rightmost index, and lower bound the leftmost.
+
+Upper bound and lower bound searches are generally prefered when there are no duplicate data because it is possible to simply compare the element returned by the search and check whether it is equal to the target.
+
+1.C IMPLEMENTATION ON ASCENDINGLY SORTED ARRAY
+
+// arr		: the array on which the search is performed
+// left		: index of the start of the array
+// right	: index of where the array ends
+// mid		: index of the middle of the array
+// val		: the target value
+
+1.C.1 RECURSIVE (exact match) :
+
+	int binary_search (T arr[], int left, int right, T val) {
+		
+		// to prevent overflow. the same as (left +  right)/2
+		int mid = left + (right - left)/2;
+		
+		// cut the array in half
+		if (arr[mid]  < val) left = mid + 1;
+		else if (arr[mid] > val) right = mid - 1;
+		else return mid;
+		
+		// if there are more than one element left in the array
+		// perform recursive step
+		if (l != r)
+			return binary_search (arr, left, right, val);
+	}
+	
+
+1.C.2 ITERATIVE (exact match) :
+
+	int binary_search (T arr[], int left, int right, T val) {
+		
+		int mid;
+		
+		// while there is still an element in the remaining array
+		while (left <= right) {
+			mid = left + (right - left)/2;
+			
+			// cut the array in half
+			if (arr[mid]  < val) left = mid + 1;
+			else if (arr[mid] > val) right = mid - 1;
+			else return mid;
+		}
+		
+		return -1;s
+	}
+
+
+1.C.3 ITERATIVE (lower bound and upper bound) :
+
+	int binary_search (T arr[], int left, int right, T val) {
+		
+		int mid;
+		
+		while (left <= right) {
+			mid = left + (right - left)/2;
+			
+			// lower bound
+			if (arr[mid] < val) left = mid + 1;
+			else right = mid - 1;
+			
+			// change to the following for upper bound
+			// if (arr[mid] > val) right = mid - 1;
+			// else left = mid + 1;
+		}
+		
+		return mid;
+	}
+	
