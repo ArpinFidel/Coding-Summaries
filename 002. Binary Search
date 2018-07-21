@@ -73,19 +73,26 @@ Upper bound and lower bound searches are generally prefered when there are no du
 	int binary_search (T arr[], int left, int right, T val) {
 		
 		int mid;
+		int ans;
 		
 		while (left <= right) {
 			mid = left + (right - left)/2;
 			
 			// lower bound
-			if (arr[mid] < val) left = mid + 1;
+			if (arr[mid] < val) {
+				left = mid + 1;
+				ans = mid;
+			}
 			else right = mid - 1;
 			
 			// change to the following for upper bound
-			// if (arr[mid] > val) right = mid - 1;
+			// if (arr[mid] > val) {
+			//	right = mid - 1;
+			//	ans = mid;
+			// }
 			// else left = mid + 1;
 		}
 		
-		return mid;
+		return ans;
 	}
 	
