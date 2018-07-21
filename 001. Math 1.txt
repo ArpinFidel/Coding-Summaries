@@ -1,4 +1,4 @@
-Math : 
+MATH 1 PROBLEMS : 
 CF		197A		Game Theory				Plate Game
 UVA		10338		Combinatorics			Mischievous Children
 UVA		10235		Prime (simple sieve)	Simply Emirp
@@ -17,9 +17,9 @@ UVA		884			Factorial / Factors		Factorial Factors
 UVA		10407		Divisors				Simple Division
 UVA		10139		Factorial / Factors		Factovisors
 
-The only two things you need for this topic are a prime sieve and a GCD ( Greatest Common Divisor (FPB) ) function
 
-GCD :
+
+1. GREATEST COMMON DIVISOR (Faktor Persekutuan Terbesar) :
 
 for b >= a,
 
@@ -28,27 +28,36 @@ for b >= a,
 		return gcd (b % a, a);
 	}
 
-also, 
+also, to find the LEAST COMMON MULTIPLE
 LCM (a, b) = a * b / GCD (a, b)
 
 
-Prime Sieve :
 
-a. Simple Sieve
+
+2. PRIME SIEVE :
+
+2.A. SIMPLE SIEVE
 
 The sieve of Eratosthenes is one of the oldest ways to find prime numbers, and is still one of the fastest. It does so by marking the multiples of each prime, starting from 2. When all the multiples of that number (up to a given limit) has been marked, the first unmarked numbers has to be a prime. This prime is then used to find more primes.
 
-a.1. First Optimisation (square root)
+
+
+2.B. OPTIMISATIONS
+
+2.B.1. SQUARE ROOT
 A number cannot have more than one factor larger than its root. This means that to mark all numbers up to N, we only have to look for primes up to sqrt(N) (this concept will be important later on). We can also start marking numbers from the square of the prime instead of its first multiple (2 * P).
 
-a.2 Second Optimisation (multiples of 2)
+2.B.2. MULTIPLES OF 2
 Since we know that the first prime is 2, we can cut the time required to compute the sieve by half by simply ignoring all the multiples of two.
 
-Examples :
-	// true is false
 
 
-	// basic sieve
+2.C IMPLEMENTATION
+
+// true is false
+
+2.C.1. BASIC SIEVE
+
 	void esieve (int n) {
 	
 		memset (isprime, 0, n);
@@ -64,7 +73,8 @@ Examples :
 	}
 
 
-	// slower but simpler variation
+2.C.2. SLOWER BUT SIMPLER VARIATION
+
 	// not optimised. optimisation left as exercise for the reader
 	void sieve (int n) {
 	
@@ -83,7 +93,7 @@ Examples :
 	}
 	
 	
-	// overly optimised variation
+2.C.3. OVERLY OPTIMISED VARIATION
 	void esieve (int n) {
 		
 		memset (isprime, 0, n / 2);
@@ -94,16 +104,22 @@ Examples :
 					sieve[(j - 3) / 2] = true;
 	}
 	
+	
 
-b. Segmented Sieve
+
+2.D. SEGMENTED SIEVE
+
 The segmented sieve is used for cases where only some of the primes are needed. It works the same way as the simple sieve, utilising the square root concept.
 
-1. We start with two numbers L and U. To mark all the numbers up to U, we need to have all the primes below sqrt(U). Simply use the simple sieve for this.
-2. For each prime P from 2 to sqrt(U) :
+	1. We start with two numbers L and U. To mark all the numbers up to U, we need to have all the primes below sqrt(U). Simply use the simple sieve for this.
+	
+	2. For each prime P from 2 to sqrt(U) :
 		2.1 find the first multiple of P after L
 		2.2 mark all multiples of P between L and U as not prime
 		
-Example :
+
+
+2.E. IMPLEMENTATION
 
 	void ssieve (unsigned long long L, unsigned long long U) {
 	

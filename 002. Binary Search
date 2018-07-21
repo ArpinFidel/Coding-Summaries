@@ -21,7 +21,7 @@ If there are multiple occurences of the target, upper bound returns the rightmos
 
 Upper bound and lower bound searches are generally prefered when there are no duplicate data because it is possible to simply compare the element returned by the search and check whether it is equal to the target.
 
-1.C IMPLEMENTATION ON ASCENDINGLY SORTED ARRAY
+1.C. IMPLEMENTATION ON ASCENDINGLY SORTED ARRAY
 
 // arr		: the array on which the search is performed
 // left		: index of the start of the array
@@ -29,7 +29,7 @@ Upper bound and lower bound searches are generally prefered when there are no du
 // mid		: index of the middle of the array
 // val		: the target value
 
-1.C.1 RECURSIVE (exact match) :
+1.C.1. RECURSIVE (exact match) :
 
 	int binary_search (T arr[], int left, int right, T val) {
 		
@@ -48,7 +48,7 @@ Upper bound and lower bound searches are generally prefered when there are no du
 	}
 	
 
-1.C.2 ITERATIVE (exact match) :
+1.C.2. ITERATIVE (exact match) :
 
 	int binary_search (T arr[], int left, int right, T val) {
 		
@@ -68,7 +68,7 @@ Upper bound and lower bound searches are generally prefered when there are no du
 	}
 
 
-1.C.3 ITERATIVE (lower bound and upper bound) :
+1.C.3. ITERATIVE (lower bound and upper bound) :
 
 	int binary_search (T arr[], int left, int right, T val) {
 		
