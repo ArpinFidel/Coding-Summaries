@@ -6,6 +6,7 @@
 
 Binary search is an efficient algorithm commonly used to find an element inside a sorted array. Binary search compares the middle element of the array with the searched element. If they are not equal, then due to the nature of a sorted array, it is possible to determine which half of the array the element is in. The search is then repeated on that half. The search ends when the element is found, or the remaining half is empty.
 
+Since each comparison binary search uses halves the search space, we can assert and easily prove that binary search will never use more than O(log N) comparisons to find the target value.
 
 1.B COMMON TYPES OF BINARY SEARCH
 
@@ -64,7 +65,7 @@ Upper bound and lower bound searches are generally prefered when there are no du
 			else return mid;
 		}
 		
-		return -1;s
+		return -1;
 	}
 
 
@@ -96,3 +97,89 @@ Upper bound and lower bound searches are generally prefered when there are no du
 		return ans;
 	}
 	
+	
+
+2. BINARY SEARCH ON MONOTONIC FUNCTION (Discrete Binary Search)
+
+Binary search does not have to be performed on a sorted array. Instead, it can also be used on any monotonic function (a function that is entirely nonincreasing or nondecreasing). The only difference is that we replace the array lookup with a function evaluation (arr[x] to f(x)).
+
+For example, we can proof that for every x < y, sqrt (x) < sqrt (y). Therefore, we can use binary search to find the square root of a number.
+
+2.A. IMPLEMENTATION
+
+2.A.1 BINARY SEARCH FOR SQUARE ROOT (Naive Implementation)
+
+	double sqrt (double val) {
+		
+		val = abs (val);
+		
+		// the square root of a number is definitely between 0 and the number
+		double left = 0, right = val, mid;
+		
+		// this might not evaluate correctly due to floating point arithmetics
+		while (left <= right) {
+		
+			mid = left + (right - left)/2;
+			
+			// this might not evaluate correctly either
+			if (mid * mid < val) left = mid;
+			else if (mid * mid > val) right = mid;
+			else return mid;
+			
+		}
+		
+		// function shouldn't reach this part,
+		// keep return as an error code
+		return -1;
+	}
+	
+2.A.2 BINARY SEARCH FOR SQUARE ROOT (Using Constant Iteration)
+
+	double sqrt (double val) {
+	
+		val = abs (val);
+		
+		double left = 0, right = val, mid;
+		
+		// after 100 iterations, the difference between
+		// square root of val and mid will be around 2^-100
+		for (int i = 0; i < 100; i++) {
+		
+			mid = left + (right - left)/2;
+			
+			if (mid * mid < val) left = mid;
+			else if (mid * mid > val) right = mid;
+			else return mid;
+			
+		}
+		
+		// simply return mid as the answer
+		return mid;
+	}
+	
+2.A.3. BINARY SEARCH FOR SQUARE ROOT (Using Epsilon Value)
+
+// in computer science, epsilon often represents a small rational number
+// here, we will use it to compare the target value and the current answer
+// if the difference is below epsilon, we will consider them equal
+
+	double sqrt (double val) {
+		
+		double eps = 1e-12;
+		
+		val = abs (val);
+		
+		double left = 0, right = val, mid;
+		
+		while (right - left > eps) {
+		
+			mid = left + (right - left)/2;
+			
+			if (mid * mid < val) left = mid;
+			else if (mid * mid > val) right = mid;
+			else return mid;
+			
+		}
+		
+		return mid;
+	}
