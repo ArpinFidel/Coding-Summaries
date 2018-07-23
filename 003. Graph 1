@@ -1,0 +1,28 @@
+GRAPH TRAVERSAL
+
+Graph Traversal refers to the process of visiting every node in a graph. In general, there are two graph traversal algorithms: Depth First Search (DFS) and Breadth First Search (BFS).
+
+
+2. DEPTH FIRST SEARCH
+
+DFS visits the child vertices before visiting the sibling vertices (goes down before sideways). A stack (often via recursion) is generally used when implementing the algorithm.
+
+The algorithm begins by choosing one vertex; it then moves to an adjacent, unvisited vertex, until it can't find another adjacent, unvisited vertex. It then backtracks to the "parents" of the previously visited vertices, until it finds a vertex connected to another unvisited vertex.
+
+2.A. IMPLEMENTATION
+	
+	// N       : number of vertices
+	// adjlist : a list describing the connections between vertices
+	//           if adjlist[1] contains 2, there is a route from 1 to 2
+	// visited : marks whether a node has been visited or not
+	
+	vector<int>adjlist[N];
+	bool visited[N] = {};
+	
+	void dfs (int i) {
+		visited[i] = true;
+		for (int j = 0; j < adjlist[i].size(); ++j) {
+			if (visited[ adjlist[i][j] ] == false)
+				dfs (adjlist[i][j]);
+		}
+	}
